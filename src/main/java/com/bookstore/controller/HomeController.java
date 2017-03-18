@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,8 +40,8 @@ public class HomeController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	@Autowired
-	private MailConstructor mailConstructor;
+	//@Autowired
+	//private MailConstructor mailConstructor;
 	
 	
 	
@@ -115,9 +116,9 @@ public class HomeController {
 		userService.createPasswordResetTokenforUser(user, token);
 		
 		String appUrl ="http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();
-		SimpleMailMessage email=mailConstructor.constructResetTokenEmail(appUrl,request.getLocale(),token,user,password);
+		//SimpleMailMessage email=mailConstructor.constructResetTokenEmail(appUrl,request.getLocale(),token,user,password);
 		
-		mailSender.send(email);
+		//mailSender.send(email);
 		model.addAttribute("emailSent", "true");
 		
 		return "myAccount";
